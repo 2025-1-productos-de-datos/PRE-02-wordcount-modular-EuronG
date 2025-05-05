@@ -11,7 +11,7 @@ def main():
 
     if len(sys.argv) != 3:
         print("need 3 args")
-        sys.exit(1)
+        sys.exit(156)
 
     input_folder = sys.argv[1]
     output_folder = sys.argv[2]
