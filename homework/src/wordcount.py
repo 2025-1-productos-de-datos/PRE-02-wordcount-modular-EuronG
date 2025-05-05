@@ -1,4 +1,4 @@
-    # obtain a list of files in the input directory
+import sys
 
 from ._internals.count_words import count_words
 from ._internals.preprocess_lines import preprocess_lines
@@ -9,20 +9,18 @@ from ._internals.write_word_counts import write_count_words
 
 def main():
 
-    # read all lines
-    all_lines = read_all_lines()
+    if len(sys.argv) != 3:
+        print("need 3 args")
+        sys.exit(1)
 
-    # preprocess lines
+    input_folder = sys.argv[1]
+    output_folder = sys.argv[2]
+
+    all_lines = read_all_lines(input_folder)
     all_lines = preprocess_lines(all_lines)
-
-    # split in words 
     words = split_into_words(all_lines)
-    
-    # count words
-    counter = count_words(words)
-        
-
-    write_count_words(counter)
+    counter = count_words(words)   
+    write_count_words(counter, output_folder)
 
 if __name__ == "__main__":
     main()
